@@ -14,8 +14,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     )
 );
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()   // <- instead of WithOrigins()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 // Add controllers
 builder.Services.AddControllers();
+
+
+
 
 var app = builder.Build();
 
@@ -34,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 var summaries = new[]
 {
