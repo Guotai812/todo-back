@@ -21,9 +21,35 @@ namespace TodoApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TodoApp.Models.Category", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("TodoApp.Models.TaskItem", b =>
                 {
                     b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("categoryId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("description")
@@ -36,7 +62,25 @@ namespace TodoApp.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("categoryId");
+
                     b.ToTable("TaskItems");
+                });
+
+            modelBuilder.Entity("TodoApp.Models.TaskItem", b =>
+                {
+                    b.HasOne("TodoApp.Models.Category", "category")
+                        .WithMany("TaskItems")
+                        .HasForeignKey("categoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
+                });
+
+            modelBuilder.Entity("TodoApp.Models.Category", b =>
+                {
+                    b.Navigation("TaskItems");
                 });
 #pragma warning restore 612, 618
         }

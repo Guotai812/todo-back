@@ -12,5 +12,6 @@ namespace TodoApp.Data
 
         // This represents the Tasks table in your database
         public DbSet<TaskItem> TaskItems { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

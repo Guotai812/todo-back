@@ -34,7 +34,7 @@ launchSettings.json
 
 # Rider / JetBrains
 .idea/
-*.iml
+*.iml 
 
 # Other generated files
 *.db
