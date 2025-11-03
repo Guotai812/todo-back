@@ -44,3 +44,5 @@ launchSettings.json
 # Publish output
 wwwroot/
 publish/
+
+.env

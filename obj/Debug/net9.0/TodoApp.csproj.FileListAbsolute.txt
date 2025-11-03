@@ -155,3 +155,5 @@
 /Users/mac/RiderProjects/TodoApp/TodoApp/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/mac/RiderProjects/TodoApp/TodoApp/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/mac/RiderProjects/TodoApp/TodoApp/obj/Debug/net9.0/TodoApp.sourcelink.json
+/Users/mac/RiderProjects/TodoApp/TodoApp/bin/Debug/net9.0/DotNetEnv.dll
+/Users/mac/RiderProjects/TodoApp/TodoApp/bin/Debug/net9.0/Sprache.dll

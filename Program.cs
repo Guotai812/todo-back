@@ -1,7 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Data;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Env.Load();
+
+var connectionString = Env.GetString("DB_CONNECTION");
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -9,9 +14,7 @@ builder.Services.AddOpenApi();
 
 // Add DbContext with SQL Server connection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    )
+        options.UseSqlServer(connectionString) // <--- use env value here
 );
 
 builder.Services.AddCors(options =>
