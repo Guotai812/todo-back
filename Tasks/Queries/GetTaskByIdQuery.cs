@@ -12,12 +12,12 @@ public class GetTaskByIdQuery
 
 public class GetTaskByIdQueryHandler(ApplicationDbContext context, ILogger<GetTaskByIdQueryHandler> logger)
 {
-    public async Task<TaskItemDTO> Handle(GetTaskByIdQuery query)
+    public async Task<TaskItemDTO> Handle(GetTaskByIdQuery query, CancellationToken ct = default)
     {
         logger.LogInformation("Fetch task: {id}",  query.id);
         var task = await context.TaskItems
             .Include(t => t.category)
-            .FirstOrDefaultAsync(t => t.id == query.id);
+            .FirstOrDefaultAsync(t => t.id == query.id, ct);
         logger.LogInformation("Fetch task: {id}", query.id);
         return new TaskItemDTO
         {

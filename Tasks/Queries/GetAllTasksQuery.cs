@@ -8,7 +8,7 @@ public class GetAllTasksQuery {}
 
 public class GetAllTasksQueryHandler(ApplicationDbContext context, ILogger<GetAllTasksQueryHandler> logger)
 {
-    public async Task<List<TaskListDTO>> Handle(GetAllTasksQuery query)
+    public async Task<List<TaskListDTO>> Handle(GetAllTasksQuery query,CancellationToken ct = default)
     {
         logger.LogInformation("Fetch all tasks");
         List<TaskListDTO> taskListDtos = await context.TaskItems
@@ -20,7 +20,7 @@ public class GetAllTasksQueryHandler(ApplicationDbContext context, ILogger<GetAl
                 categoryName  = t.category != null ? t.category.name  : null,
                 categoryColor = t.category != null ? t.category.color : null
             })
-            .ToListAsync();
+            .ToListAsync(ct);
         logger.LogInformation("Fetch all tasks");
         return taskListDtos;
     }
