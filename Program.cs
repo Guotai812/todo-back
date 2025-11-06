@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Data;
+using TodoApp.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     )
 );
 
-// Add controllers
 builder.Services.AddControllers();
+builder.Services.AddTaskServices();
+
 
 var app = builder.Build();
 
